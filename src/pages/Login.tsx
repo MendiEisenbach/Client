@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Logged in as: ${username}`);
+
+    const fakeToken = "xyz789";
+    login(username, "user", fakeToken);
+
+    navigate("/menu");
   };
 
   return (
@@ -28,3 +36,4 @@ function Login() {
 }
 
 export default Login;
+

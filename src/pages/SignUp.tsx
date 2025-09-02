@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router";
 
 function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert(`Signed up with username: ${username}`);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); 
+    const fakeToken = "abc123";
+    login(username, "user", fakeToken);
+
+    navigate("/menu"); 
   };
 
   return (
@@ -28,3 +35,4 @@ function SignUp() {
 }
 
 export default SignUp;
+
