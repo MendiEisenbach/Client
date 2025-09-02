@@ -1,12 +1,16 @@
+import { players } from "../data/players";
+
 function Rankings() {
   return (
     <div style={{ padding: "2rem" }}>
       <h2>Player Rankings</h2>
-      <p>Here you would see the leaderboard (Admin only).</p>
-      <ol>
-        <li>Player1 - 10 sec</li>
-        <li>Player2 - 12 sec</li>
-      </ol>
+      <ul>
+        {players.map((p, index) => (
+          <li key={index}>
+            {index + 1}. {p.name} {p.lowestTime !== undefined ? `- ${p.lowestTime} sec` : ""}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

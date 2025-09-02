@@ -1,10 +1,7 @@
+import PlayGame from "./PlayGame";
+
 function Guest() {
-  return (
-    <div style={{ padding: "2rem" }}>
-      <h2>You are playing as a Guest</h2>
-      <p>No account, just play!</p>
-    </div>
-  );
+  return <PlayGame />;
 }
 
 export default Guest;
