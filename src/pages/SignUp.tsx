@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [username, setUsername] = useState("");
@@ -8,10 +8,18 @@ function SignUp() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); 
-    const fakeToken = "abc123";
-    login(username, "user", fakeToken);
+  const handleSignUp = (e: React.FormEvent) => {
+    e.preventDefault();
+
+ let role: string;
+    if (username.toLowerCase() === "admin") {
+      role = "admin";
+    } else {
+      role = "user";
+    }
+
+    const fakeToken = "abc123"; 
+    login(username, role, fakeToken);
 
     navigate("/menu"); 
   };
@@ -19,7 +27,7 @@ function SignUp() {
   return (
     <div style={{ padding: "2rem" }}>
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignUp}>
         <div>
           <label>Username: </label>
           <input value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -28,11 +36,12 @@ function SignUp() {
           <label>Password: </label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
 }
 
 export default SignUp;
+
 

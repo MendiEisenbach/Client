@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function MainMenu() {
   const { username, role } = useContext(AuthContext);
@@ -10,11 +11,11 @@ function MainMenu() {
       <p>{username ? `Logged in as: ${username} (${role})` : "You are a guest"}</p>
 
       <ul>
-        <li>Play the Game</li>
+        <li><Link to="/play">Play the Game</Link></li>
         {role === "admin" && (
           <>
-            <li>View All Riddles</li>
-            <li>Player Rankings</li>
+            <li><Link to="/riddles">View All Riddles</Link></li>
+            <li><Link to="/rankings">Player Rankings</Link></li>
           </>
         )}
       </ul>
@@ -23,3 +24,4 @@ function MainMenu() {
 }
 
 export default MainMenu;
+
