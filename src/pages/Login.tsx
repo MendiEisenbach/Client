@@ -1,18 +1,26 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
+    let role: string;
+    if (username.toLowerCase() === "admin") {
+      role = "admin";
+    } else {
+      role = "user";
+    }
+
     const fakeToken = "xyz789";
-    login(username, "user", fakeToken);
+    login(username, role, fakeToken);
 
     navigate("/menu");
   };
@@ -36,4 +44,5 @@ function Login() {
 }
 
 export default Login;
+
 
