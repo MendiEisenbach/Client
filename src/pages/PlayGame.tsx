@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { riddles } from "../data/riddles";
 import { players } from "../data/players";
+import type { Player } from "../data/players";
+
 
 function PlayGame() {
   const { username, role } = useContext(AuthContext);
@@ -12,7 +14,10 @@ function PlayGame() {
   const navigate = useNavigate();
 
   const handleAnswer = (answer: string) => {
-    if (answer.toLowerCase() === riddles[currentRiddle].correctAnswer.toLowerCase()) {
+    if (
+      answer.toLowerCase() ===
+      riddles[currentRiddle].correctAnswer.toLowerCase()
+    ) {
     }
 
     if (currentRiddle + 1 < riddles.length) {
@@ -20,17 +25,23 @@ function PlayGame() {
     } else {
       alert(`Game over! ${playerName} finished all riddles.`);
 
-      const exists = players.some(p => p.name.toLowerCase() === playerName.toLowerCase());
+      const exists = players.some(
+        (p: Player) => p.name.toLowerCase() === playerName.toLowerCase()
+      );
+
       if (!exists) {
-        players.push({ name: playerName });
+        players.push({ name: playerName, lowestTime: Infinity });
       }
+
       navigate("/menu");
     }
   };
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h2>Playing as: {playerName} ({role})</h2>
+      <h2>
+        Playing as: {playerName} ({role})
+      </h2>
       <p>{riddles[currentRiddle].taskDescription}</p>
       <input
         type="text"
