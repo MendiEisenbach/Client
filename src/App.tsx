@@ -6,6 +6,9 @@ import Guest from "./pages/Guest";
 import MainMenu from "./pages/MainMenu";
 import PlayGame from "./pages/PlayGame";
 import AllRiddles from "./pages/AllRiddles";
+import CreateRiddle from "./pages/CreateRiddle";
+import UpdateRiddle from "./pages/UpdateRiddle";
+import DeleteRiddle from "./pages/DeleteRiddle";
 import Rankings from "./pages/Rankings";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
@@ -24,6 +27,10 @@ function App() {
           <Route path="/play" element={<PlayGame />} />
           <Route path="/riddles" element={<AllRiddles />} />
           <Route path="/rankings" element={<Rankings />} />
+          <Route path="/create-riddle" element={<CreateRiddle />} />
+          <Route path="/update-riddle" element={<UpdateRiddle />} />
+          <Route path="/delete-riddle" element={<DeleteRiddle />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

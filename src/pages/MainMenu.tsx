@@ -12,9 +12,18 @@ function MainMenu() {
 
       <ul>
         <li><Link to="/play">Play the Game</Link></li>
+
+        {role !== "guest" && (
+          <>
+            <li><Link to="/create-riddle">Create a New Riddle</Link></li>
+            <li><Link to="/riddles">Read All Riddles</Link></li>
+          </>
+        )}
+
         {role === "admin" && (
           <>
-            <li><Link to="/riddles">View All Riddles</Link></li>
+            <li><Link to="/update-riddle">Update an Existing Riddle</Link></li>
+            <li><Link to="/delete-riddle">Delete a Riddle</Link></li>
             <li><Link to="/rankings">Player Rankings</Link></li>
           </>
         )}
@@ -24,4 +33,5 @@ function MainMenu() {
 }
 
 export default MainMenu;
+
 

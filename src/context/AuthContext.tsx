@@ -1,12 +1,10 @@
 import { createContext, useState } from "react";
 
-type AuthValue = string;
-
 interface AuthContextType {
-  username: AuthValue;
-  role: AuthValue;
-  token: AuthValue;
-  login: (username: AuthValue, role: AuthValue, token: AuthValue) => void;
+  username: string;
+  role: string;
+  token: string;
+  login: (username: string, role: string, token: string) => void;
   logout: () => void;
 }
 
@@ -19,11 +17,11 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export function AuthProvider({ children }:any) {
-  const [username, setUsername] = useState<AuthValue>("");
-  const [role, setRole] = useState<AuthValue>("");
-  const [token, setToken] = useState<AuthValue>("");
+  const [username, setUsername] = useState<string>("");
+  const [role, setRole] = useState<string>("");
+  const [token, setToken] = useState<string>("");
 
-  const login = (username: AuthValue, role: AuthValue, token: AuthValue) => {
+  const login = (username: string, role: string, token: string) => {
     setUsername(username);
     setRole(role);
     setToken(token);
