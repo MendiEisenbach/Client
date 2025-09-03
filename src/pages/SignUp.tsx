@@ -1,47 +1,46 @@
-import { useState, useContext } from "react";
+import {  useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { signUpUser } from "../services/userService";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useContext(AuthContext);
+  const [usernameInput, setUsernameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
   const navigate = useNavigate();
+  const { setUsername, setRole, setToken} = useContext(AuthContext)
+  const handleRegister = async () => {
+    try {
+    const res=  await signUpUser(usernameInput, passwordInput);
+    setToken(res.token)
+    setRole(res.role);
+    setUsername(res.username);
+    localStorage.setItem("token", res.token);
 
-  const handleSignUp = (e: React.FormEvent) => {
-    e.preventDefault();
-
- let role: string;
-    if (username.toLowerCase() === "admin") {
-      role = "admin";
-    } else {
-      role = "user";
+      alert("SignUp successfully! Please login.");
+      navigate("/login");
+    } catch (err) {
+      alert("Registration failed");
     }
-
-    const fakeToken = "abc123"; 
-    login(username, role, fakeToken);
-
-    navigate("/menu"); 
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSignUp}>
-        <div>
-          <label>Username: </label>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} />
-        </div>
-        <div>
-          <label>Password: </label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
+    <div>
+      <h2>SignUp</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        value={usernameInput}
+        onChange={(e) => setUsernameInput(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={passwordInput}
+        onChange={(e) => setPasswordInput(e.target.value)}
+      />
+      <button onClick={handleRegister}>SignUp</button>
     </div>
   );
 }
 
 export default SignUp;
-
-
