@@ -1,48 +1,54 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../context/AuthContext";
+import { loginUser } from "../services/userService";
 
 function Login() {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const { login } = useContext(AuthContext);
+  const { setUsername, setRole, setToken } = useContext(AuthContext);
+  const [usernameInput, setUsernameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async () => {
+    try {
+      console.log('sdsdsd',usernameInput,passwordInput);
 
-    let role: string;
-    if (username.toLowerCase() === "admin") {
-      role = "admin";
-    } else {
-      role = "user";
+      
+      const data = await loginUser(usernameInput, passwordInput);
+
+      setUsername(data.username);
+      setRole(data.role);
+      setToken(data.token);
+      localStorage.setItem("token", data.token);
+      
+
+      navigate("/menu");
+    } catch (err) {
+      alert("Login failed");
     }
-
-    const fakeToken = "xyz789";
-    login(username, role, fakeToken);
-
-    navigate("/menu");
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Log In</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username: </label>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} />
-        </div>
-        <div>
-          <label>Password: </label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <button type="submit">Log In</button>
-      </form>
+    <div>
+      <h2>Login</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        value={usernameInput}
+        onChange={(e) => setUsernameInput(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={passwordInput}
+        onChange={(e) => setPasswordInput(e.target.value)}
+      />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
 
 export default Login;
+
 
 

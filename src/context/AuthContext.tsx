@@ -1,45 +1,33 @@
-import { createContext, useState } from "react";
-
-type AuthValue = string;
+import { createContext, useState, type ReactNode } from "react";
 
 interface AuthContextType {
-  username: AuthValue;
-  role: AuthValue;
-  token: AuthValue;
-  login: (username: AuthValue, role: AuthValue, token: AuthValue) => void;
-  logout: () => void;
+  username: string;
+  role: string;
+  token: string;
+  setUsername: (name: string) => void;
+  setRole: (role: string) => void;
+  setToken: (token: string) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   username: "",
   role: "",
   token: "",
-  login: () => {},
-  logout: () => {},
+  setUsername: () => {},
+  setRole: () => {},
+  setToken: () => {},
 });
 
-export function AuthProvider({ children }:any) {
-  const [username, setUsername] = useState<AuthValue>("");
-  const [role, setRole] = useState<AuthValue>("");
-  const [token, setToken] = useState<AuthValue>("");
-
-  const login = (username: AuthValue, role: AuthValue, token: AuthValue) => {
-    setUsername(username);
-    setRole(role);
-    setToken(token);
-    localStorage.setItem("session", JSON.stringify({ username, role, token }));
-  };
-
-  const logout = () => {
-    setUsername("");
-    setRole("");
-    setToken("");
-    localStorage.removeItem("session");
-  };
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
+  const [token, setToken] = useState("");
 
   return (
-    <AuthContext.Provider value={{ username, role, token, login, logout }}>
+    <AuthContext.Provider
+      value={{ username, role, token, setUsername, setRole, setToken, }}>
       {children}
     </AuthContext.Provider>
   );
 }
+
