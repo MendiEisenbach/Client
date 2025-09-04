@@ -1,47 +1,84 @@
-import { useContext, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
-import { AuthContext } from "../context/AuthContext";
-import { riddles } from "../data/riddles";
-import { players } from "../data/players";
-import type { Player } from "../data/players";
-
+import { postPlayerTime } from "../services/userService";
+import { getRiddles } from "../services/riddleService";
 
 function PlayGame() {
-  const { username, role } = useContext(AuthContext);
-  const playerName = username ? username : "Guest";
+  let playerName = "Guest";
+  const tokenString = localStorage.getItem("token");
+  if (tokenString) {
+    try {
+      const payload = JSON.parse(atob(tokenString.split(".")[1]));
+      playerName = payload.name || "Guest";
+    } catch (err) {
+      console.error("Invalid token:", err);
+    }
+  }
 
-  const [currentRiddle, setCurrentRiddle] = useState<number>(0);
+  const [riddles, setRiddles] = useState<any[]>([]);
+  const [currentRiddle, setCurrentRiddle] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const timerRef = useRef<number | null>(null);
+
   const navigate = useNavigate();
 
-  const handleAnswer = (answer: string) => {
-    if (
-      answer.toLowerCase() ===
-      riddles[currentRiddle].correctAnswer.toLowerCase()
-    ) {
-    }
-
-    if (currentRiddle + 1 < riddles.length) {
-      setCurrentRiddle(currentRiddle + 1);
-    } else {
-      alert(`Game over! ${playerName} finished all riddles.`);
-
-      const exists = players.some(
-        (p: Player) => p.name.toLowerCase() === playerName.toLowerCase()
-      );
-
-      if (!exists) {
-        players.push({ name: playerName, lowestTime: Infinity });
+  useEffect(() => {
+    async function fetchRiddles() {
+      try {
+        const data = await getRiddles();
+        setRiddles(data);
+      } catch (err) {
+        console.error("Error fetching riddles:", err);
+      } finally {
+        setLoading(false);
       }
+    }
+    fetchRiddles();
+  }, []);
 
-      navigate("/menu");
+  useEffect(() => {
+    timerRef.current = window.setInterval(() => {
+      setElapsedTime((prev) => prev + 1000);
+    }, 1000);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  const handleAnswer = async (answer: string) => {
+    if (!riddles[currentRiddle]) return;
+
+    const correctAnswer = riddles[currentRiddle].correctAnswer.toLowerCase();
+    if (answer.trim().toLowerCase() === correctAnswer) {
+      setFeedback("Correct!");
+      if (currentRiddle + 1 < riddles.length) {
+        setCurrentRiddle(currentRiddle + 1);
+      } else {
+        if (timerRef.current) clearInterval(timerRef.current);
+
+        try {
+          await postPlayerTime(playerName, Math.floor(elapsedTime / 1000));
+        } catch (err) {
+          console.error("Error saving time:", err);
+        }
+
+        alert(`Game over! ${playerName} finished all riddles in ${Math.floor(elapsedTime / 1000)} sec.`);
+        navigate("/menu");
+      }
+    } else {
+      setFeedback("Wrong answer, try again.");
     }
   };
 
+  if (loading) return <div>Loading riddles...</div>;
+  if (riddles.length === 0) return <div>No riddles available.</div>;
+
   return (
     <div style={{ padding: "2rem" }}>
-      <h2>
-        Playing as: {playerName} ({role})
-      </h2>
+      <p>Time elapsed: {Math.floor(elapsedTime / 1000)} sec</p>
       <p>{riddles[currentRiddle].taskDescription}</p>
       <input
         type="text"
@@ -53,6 +90,7 @@ function PlayGame() {
           }
         }}
       />
+      <p>{feedback}</p>
     </div>
   );
 }

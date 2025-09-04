@@ -10,7 +10,7 @@ function Navbar() {
       <Link to="/menu">Main Menu</Link> |{" "}
       <Link to="/play">Play Game</Link> |{" "}
       <Link to="/riddles">All Riddles</Link> |{" "}
-      <Link to="/rankings">Rankings</Link> |{" "}
+      <Link to="/rankings">Leaderboard</Link> |{" "}
       <Link to="/create-riddle">create riddle</Link> |{" "}
       <Link to="/update-riddle">update riddle</Link> |{" "}
       <Link to="/delete-riddle">"delete riddle"</Link>
