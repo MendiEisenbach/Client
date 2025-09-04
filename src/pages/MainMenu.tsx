@@ -22,7 +22,7 @@ function MainMenu() {
           <Link to="/play">Play the Game</Link>
         </li>
         <li>
-          <Link to="/leaderboard">Leaderboard</Link>
+          <Link to="/rankings">Leaderboard</Link>
         </li>
 
         {(role === "user" || role === "admin") && (
