@@ -1,5 +1,5 @@
-// const API_URL = "https://riddleproject.onrender.com/api/riddles";
-const API_URL = "http://localhost:4545/";
+const API_URL = "https://riddleproject.onrender.com/";
+
 
 export async function createRiddle(
   name: string,
@@ -28,3 +28,19 @@ export async function createRiddle(
 
   return await res.json();
 }
+
+
+export async function getRiddles() {
+  const res = await fetch(`${API_URL}api/riddles`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch riddles");
+  }
+
+  return await res.json();
+}
+
