@@ -8,7 +8,6 @@ function CreateRiddle() {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const { token} = useContext(AuthContext); 
 
-  console.log(token);
 
 
   const handleSubmit = async () => {
