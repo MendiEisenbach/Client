@@ -24,7 +24,7 @@ function Rankings() {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h2>Player Rankings</h2>
+      <h2>Leaderboard</h2>
       <ul>
         {players.map((p, index) => (
           <li key={index}>

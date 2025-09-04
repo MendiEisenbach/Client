@@ -14,7 +14,6 @@ function Login() {
       console.log(usernameInput, passwordInput);
 
       const data = await loginUser(usernameInput, passwordInput);
-      console.log(data);
       setUsername(data.token.username);
       setRole(data.token.role);
       setToken(data.token.token);
@@ -22,12 +21,14 @@ function Login() {
 
       navigate("/menu");
     } catch (err) {
-      alert("Login failed");
+      console.error("Login failed:", err);
+      alert("Login failed, redirecting to Guest menu...");
+      navigate("/guest"); 
     }
   };
 
   return (
-    <div>
+    <div style={{ padding: "2rem" }}>
       <h2>Login</h2>
       <input
         type="text"
