@@ -15,8 +15,8 @@ function Login() {
 
       const data = await loginUser(usernameInput, passwordInput);
       console.log(data);
-      setUsername(data.username);
-      setRole(data.role);
+      setUsername(data.token.username);
+      setRole(data.token.role);
       setToken(data.token.token);
       localStorage.setItem("token", data.token.token);
 
