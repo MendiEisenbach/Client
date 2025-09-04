@@ -1,4 +1,5 @@
-const serverUrl = 'https://riddleproject.onrender.com';
+// const serverUrl = 'https://riddleproject.onrender.com';
+const serverUrl = "http://localhost:4545";
 
 export async function loginUser(username: string, password: string) {
   const res = await fetch(`${serverUrl}/api/players/login`, {
