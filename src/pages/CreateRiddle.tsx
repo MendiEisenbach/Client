@@ -6,7 +6,8 @@ function CreateRiddle() {
   const [name, setName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
-  const { token} = useContext(AuthContext); 
+  const { token} = useContext(AuthContext);
+  console.log(token) 
 
 
 
