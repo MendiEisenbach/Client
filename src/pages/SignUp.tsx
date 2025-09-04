@@ -12,8 +12,8 @@ function SignUp() {
     try {
     const res=  await signUpUser(usernameInput, passwordInput);
     setToken(res.token)
-    setRole(res.role);
-    setUsername(res.username);
+    setRole(res.token.role);
+    setUsername(res.token.username);
     localStorage.setItem("token", res.token);
 
       alert("SignUp successfully! Please login.");
