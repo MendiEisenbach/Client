@@ -1,0 +1,15 @@
+nav {
+  position: sticky; top: 0;
+  display: flex; gap: 12px; align-items: center;
+  padding: 8px 12px;
+  background: #141821;
+  border-bottom: 1px solid #222;
+}
+
+nav a {
+  color: #d322aa;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+nav a:hover { color: #fff; background: #621436; }

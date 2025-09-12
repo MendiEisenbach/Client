@@ -1,0 +1,35 @@
+.guest {
+  max-width: 560px;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.guest h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: #eaa722;
+  text-align: center;
+}
+
+.guest ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.guest li a {
+  display: block;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #ce22a3;
+  color: #e9edf5;
+  border: 1px solid #47063e;
+  transition: background .2s, transform .05s;
+}
+
+.guest li a:hover { background: #5d133e; }
+.guest li a:active { transform: translateY(1px); }

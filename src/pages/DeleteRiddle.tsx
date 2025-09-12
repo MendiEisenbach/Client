@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { riddles } from "../data/riddles";
+import "../Style/DeleteRiddle.css";
 
 function DeleteRiddle() {
   const [id, setId] = useState<number>(0);
@@ -13,7 +14,7 @@ function DeleteRiddle() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="delete-riddle">
       <h2>Delete Riddle</h2>
       <input type="number" placeholder="Riddle ID" value={id || ""} onChange={e => setId(Number(e.target.value))} />
       <button onClick={handleDelete}>Delete</button>

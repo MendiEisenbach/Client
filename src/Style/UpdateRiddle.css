@@ -1,0 +1,36 @@
+.update-riddle {
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 16px;
+  background: #1f2430;
+  border: 1px solid #2a3140;
+  border-radius: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.update-riddle h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  text-align: center;
+  color: #e9edf5;
+}
+
+.update-riddle input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+    background: #c75186;
+  border: 1px solid #621255;
+  color: #e9edf5;
+}
+
+.update-riddle button {
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #22d3ee;
+  color: #0b0f17;
+  cursor: pointer;
+}
+.update-riddle button:hover { background: #1cc6df; }

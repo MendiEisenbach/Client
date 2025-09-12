@@ -12,6 +12,8 @@ import DeleteRiddle from "./pages/DeleteRiddle";
 import Rankings from "./pages/Rankings";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
+import "./App.css";
+
 
 function App() {
   return (

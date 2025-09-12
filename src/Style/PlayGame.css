@@ -1,0 +1,40 @@
+.play {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 16px;
+    background: #ca3397;
+  border: 1px solid #621255;
+  border-radius: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.play .time {
+  font-size: 14px;
+  color: #a9b0be;
+  background: #0f131c;
+  border: 1px solid #2a3140;
+  padding: 6px 10px;
+  border-radius: 999px;
+  width: max-content;
+}
+
+.play .question {
+  font-size: 18px;
+  color: #e9edf5;
+}
+
+.play input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a3140;
+  background: #0f131c;
+  color: #e9edf5;
+}
+.play input:focus { outline: none; border-color: #3a4458; }
+
+.play .feedback {
+  min-height: 18px;
+  color: #ef7c11;
+}

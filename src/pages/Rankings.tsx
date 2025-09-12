@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getPlayers } from "../services/userService";
+import "../Style/Rankings.css";
 
 function Rankings() {
   const [players, setPlayers] = useState<any[]>([]);
@@ -23,7 +24,7 @@ function Rankings() {
   if (loading) return <div>Loading rankings...</div>;
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="rankings">
       <h2>Leaderboard</h2>
       <ul>
         {players.map((p, index) => (

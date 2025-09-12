@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import "../Style/MainMenu.css";
 
 function MainMenu() {
   const tokenString = localStorage.getItem("token");
@@ -14,7 +15,7 @@ function MainMenu() {
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="menu">
       <h2>Main Menu</h2>
 
       <ul>

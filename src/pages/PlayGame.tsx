@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { postPlayerTime } from "../services/userService";
 import { getRiddles } from "../services/riddleService";
+import "../Style/PlayGame.css";
 
 function PlayGame() {
   let playerName = "Guest";
@@ -76,23 +77,23 @@ function PlayGame() {
   if (loading) return <div>Loading riddles...</div>;
   if (riddles.length === 0) return <div>No riddles available.</div>;
 
-  return (
-    <div style={{ padding: "2rem" }}>
-      <p>Time elapsed: {Math.floor(elapsedTime / 1000)} sec</p>
-      <p>{riddles[currentRiddle].taskDescription}</p>
-      <input
-        type="text"
-        placeholder="Type your answer"
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleAnswer((e.target as HTMLInputElement).value);
-            (e.target as HTMLInputElement).value = "";
-          }
-        }}
-      />
-      <p>{feedback}</p>
-    </div>
-  );
+return (
+  <div className="play">
+    <p className="time">Time elapsed: {Math.floor(elapsedTime / 1000)} sec</p>
+    <p className="question">{riddles[currentRiddle].taskDescription}</p>
+    <input
+      type="text"
+      placeholder="Type your answer"
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          handleAnswer((e.target as HTMLInputElement).value);
+          (e.target as HTMLInputElement).value = "";
+        }
+      }}
+    />
+    <p className="feedback">{feedback}</p>
+  </div>
+);
 }
 
 export default PlayGame;
