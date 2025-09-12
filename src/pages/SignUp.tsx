@@ -2,6 +2,7 @@ import {  useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { signUpUser } from "../services/userService";
 import { AuthContext } from "../context/AuthContext";
+import "../Style/SignUp.css";
 
 function SignUp() {
   const [usernameInput, setUsernameInput] = useState("");
@@ -24,7 +25,7 @@ function SignUp() {
   };
 
   return (
-    <div>
+    <div className="signup">
       <h2>SignUp</h2>
       <input
         type="text"

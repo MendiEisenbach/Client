@@ -1,0 +1,36 @@
+.create-riddle {
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 16px;
+  background: #c75186;
+  border: 1px solid #621255;
+  border-radius: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.create-riddle h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  text-align: center;
+  color: #d8932b;
+}
+
+.create-riddle input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a3140;
+  background: #0f131c;
+  color: #e9edf5;
+}
+
+.create-riddle button {
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #8b5cf6;
+  color: #fff;
+  cursor: pointer;
+}
+.create-riddle button:hover { background: #7a4be6; }

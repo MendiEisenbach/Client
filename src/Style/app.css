@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #0f1115;
+  color: #e9edf5;
+}
+
+a { color: #e9edf5; text-decoration: none; }
+button { cursor: pointer; }
+input, button { font: inherit; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 16px; }

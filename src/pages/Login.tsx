@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { loginUser } from "../services/userService";
+import "../Style/Login.css";
 
 function Login() {
   const { setUsername, setRole, setToken } = useContext(AuthContext);
@@ -28,7 +29,7 @@ function Login() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+<div className="login">
       <h2>Login</h2>
       <input
         type="text"

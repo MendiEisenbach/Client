@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { createRiddle } from "../services/riddleService";
 import { AuthContext } from "../context/AuthContext";
+import "../Style/CreateRiddle.css";
 
 function CreateRiddle() {
   const [name, setName] = useState("");
@@ -24,7 +25,7 @@ function CreateRiddle() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="create-riddle">
       <h2>Create New Riddle</h2>
       <div>
         <input

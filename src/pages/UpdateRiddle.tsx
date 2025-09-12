@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { riddles } from "../data/riddles";
+import "../Style/UpdateRiddle.css";
 
 function UpdateRiddle() {
   const [id, setId] = useState<number>(0);
@@ -21,7 +22,7 @@ function UpdateRiddle() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="update-riddle">
       <h2>Update Riddle</h2>
       <div>
         <input type="number" placeholder="Riddle ID" value={id || ""} onChange={e => setId(Number(e.target.value))} />

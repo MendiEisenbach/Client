@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+export default Guest;
+
+
+import "../Style/Guest.css";
 
 function Guest() {
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="guest">
       <h2>Guest menu</h2>
       <ul>
         <li>
@@ -16,4 +20,3 @@ function Guest() {
   );
 }
 
-export default Guest;

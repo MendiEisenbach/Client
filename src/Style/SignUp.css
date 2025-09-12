@@ -1,0 +1,44 @@
+/* טופס הרשמה קצר ונקי */
+.signup {
+  max-width: 420px;
+  margin: 24px auto;
+  padding: 20px;
+  background: #1f2430;
+  border: 1px solid #2a3140;
+  border-radius: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.signup h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  color: #e9edf5;
+  text-align: center;
+}
+
+.signup input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a3140;
+  background: #0f131c;
+  color: #e9edf5;
+}
+
+.signup input:focus {
+  outline: none;
+  border-color: #3a4458;
+}
+
+.signup button {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #227aee; 
+  color: #0b0f17;
+  cursor: pointer;
+}
+
+.signup button:hover { background: #04dd74; }

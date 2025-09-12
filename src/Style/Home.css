@@ -1,0 +1,39 @@
+.home {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.home h1 {
+  font-size: 28px;
+  letter-spacing: 0.3px;
+  color: #d78117;
+  text-align: center;
+}
+
+.home ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  width: 100%;
+  max-width: 560px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.home li a {
+  display: block;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #cf4bac;
+  color: #f4f2f0;
+  border: 1px solid #b7558d;
+  transition: background .2s, transform .05s;
+}
+
+.home li a:hover { background: #762872; }
+.home li a:active { transform: translateY(1px); }

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRiddles } from "../services/riddleService";
+import "../Style/AllRiddles.css";
+
 
 function AllRiddles() {
   const [riddles, setRiddles] = useState<any[]>([]);
@@ -24,7 +26,7 @@ function AllRiddles() {
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
+  <div className="riddles">
       <h2>All Riddles</h2>
       <ul>
         {riddles.map((r, index) => (

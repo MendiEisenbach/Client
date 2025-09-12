@@ -1,0 +1,36 @@
+.delete-riddle {
+  max-width: 420px;
+  margin: 24px auto;
+  padding: 16px;
+  background: #1f2430;
+  border: 1px solid #2a3140;
+  border-radius: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.delete-riddle h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  text-align: center;
+  color: #e9edf5;
+}
+
+.delete-riddle input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a3140;
+  background: #0f131c;
+  color: #e9edf5;
+}
+
+.delete-riddle button {
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #ef4444;
+  color: #fff;
+  cursor: pointer;
+}
+.delete-riddle button:hover { background: #d73b3b; }
